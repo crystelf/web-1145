@@ -289,8 +289,8 @@
             { name: "TinyPNG", url: "https://tinypng.com" },
             { name: "Canva", url: "https://www.canva.com" },
             { name: "PDF 转换器", url: "https://smallpdf.com" }*/
-			{ name: '父母性别查询器'， url: './Fumu'}，
-			{ name: '小米跑解BL模拟游戏'， url: './XiaomiBL'}，
+			{ name: '父母性别查询器', url: './Fumu'},
+			{ name: '小米跑解BL模拟游戏', url: './XiaomiBL'},
 			
         ];
         
@@ -310,8 +310,8 @@
                 
                 // 使用模版字符串创建卡片内容
                 card.innerHTML = `
-                    <div class="nav-name">${item。name}</div>
-                    <a href="${item。url}" target="_blank" class="nav-link"></a>
+                    <div class="nav-name">${item.name}</div>
+                    <a href="${item.url}" target="_blank" class="nav-link"></a>
                 `;
                 
                 container.appendChild(card);
@@ -327,8 +327,8 @@
             renderNavCards();
             
             // 添加搜索功能
-            document.getElementById('search-input').addEventListener('input'， renderNavCards);
-            document.querySelector('.search-box button').addEventListener('click'， renderNavCards);
+            document.getElementById('search-input').addEventListener('input', renderNavCards);
+            document.querySelector('.search-box button').addEventListener('click', renderNavCards);
         });
     </script>
 </body>
