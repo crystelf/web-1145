@@ -1,279 +1,288 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>普通导航页</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Noto Sans SC', 'Segoe UI', 'Microsoft YaHei', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #fafafa, #ffffff);
-            min-height: 100vh;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 800px;
-            width: 100%;
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
-        
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Noto Sans SC", "Segoe UI", "Microsoft YaHei", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #fafafa, #ffffff);
+        min-height: 100vh;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        width: 100%;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 0 20px;
+      }
+
+      h1 {
+        font-size: 2.8rem;
+        font-weight: 300;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        letter-spacing: -0.5px;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        font-weight: 300;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .nav-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .nav-card {
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        padding: 24px 32px;
+        transition: all 0.3s ease;
+        border: 1px solid #f0f0f0;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .nav-card:hover {
+        transform: translateX(8px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        border-color: #e6e6e6;
+        background: #f9f9f9;
+      }
+
+      .nav-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 4px;
+        background: linear-gradient(to bottom, #3498db, #2ecc71);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-card:hover::before {
+        opacity: 1;
+      }
+
+      .nav-name {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #2c3e50;
+        flex-grow: 1;
+        padding-left: 12px;
+        position: relative;
+      }
+
+      .nav-name::after {
+        content: "→";
+        position: absolute;
+        right: 0;
+        opacity: 0.3;
+        transition: all 0.3s ease;
+      }
+
+      .nav-card:hover .nav-name::after {
+        opacity: 1;
+        transform: translateX(5px);
+      }
+
+      .nav-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 2;
+      }
+
+      .counter {
+        display: flex;
+        justify-content: center;
+        margin: 25px 0;
+        color: #95a5a6;
+        font-size: 0.95rem;
+      }
+
+      footer {
+        margin-top: 40px;
+        text-align: center;
+        color: #95a5a6;
+        font-size: 0.9rem;
+        padding: 20px;
+        border-top: 1px solid #f0f0f0;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      @media (max-width: 768px) {
         h1 {
-            font-size: 2.8rem;
-            font-weight: 300;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
+          font-size: 2.2rem;
         }
-        
+
         .subtitle {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
+          font-size: 1rem;
         }
-        
-        .nav-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            margin-top: 20px;
-        }
-        
+
         .nav-card {
-            background: white;
-            border-radius: 14px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-            padding: 24px 32px;
-            transition: all 0.3s ease;
-            border: 1px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+          padding: 20px 25px;
         }
-        
-        .nav-card:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-            border-color: #e6e6e6;
-            background: #f9f9f9;
-        }
-        
-        .nav-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: linear-gradient(to bottom, #3498db, #2ecc71);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .nav-card:hover::before {
-            opacity: 1;
-        }
-        
+
         .nav-name {
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #2c3e50;
-            flex-grow: 1;
-            padding-left: 12px;
-            position: relative;
+          font-size: 1.2rem;
         }
-        
-        .nav-name::after {
-            content: '→';
-            position: absolute;
-            right: 0;
-            opacity: 0.3;
-            transition: all 0.3s ease;
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 30px 15px;
         }
-        
-        .nav-card:hover .nav-name::after {
-            opacity: 1;
-            transform: translateX(5px);
+
+        h1 {
+          font-size: 1.8rem;
         }
-        
-        .nav-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            z-index: 2;
+
+        .nav-card {
+          padding: 18px 20px;
         }
-        
-        .counter {
-            display: flex;
-            justify-content: center;
-            margin: 25px 0;
-            color: #95a5a6;
-            font-size: 0.95rem;
+
+        .nav-name {
+          font-size: 1.1rem;
         }
-        
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #95a5a6;
-            font-size: 0.9rem;
-            padding: 20px;
-            border-top: 1px solid #f0f0f0;
-            width: 100%;
-            max-width: 600px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-            }
-            
-            .nav-card {
-                padding: 20px 25px;
-            }
-            
-            .nav-name {
-                font-size: 1.2rem;
-            }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 30px 15px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .nav-card {
-                padding: 18px 20px;
-            }
-            
-            .nav-name {
-                font-size: 1.1rem;
-            }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .watermark {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            color: rgba(0,0,0,0.05);
-            font-size: 1.5rem;
-            font-weight: 700;
-            transform: rotate(-15deg);
-            -webkit-user-select: none;
-            user-select: none;
-            pointer-events: none;
-        }
-        
-        .search-container {
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            width: 100%;
-        }
-        
-        .search-box {
-            display: flex;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border-radius: 50px;
-            overflow: hidden;
-            height: 56px;
-        }
-        
-        .search-box input {
-            flex-grow: 1;
-            border: none;
-            padding: 0 25px;
-            font-size: 1.1rem;
-            outline: none;
-            background: white;
-        }
-        
-        .search-box button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 0 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .search-box button:hover {
-            background: #2980b9;
-        }
+      }
+
+      .watermark {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        color: rgba(0, 0, 0, 0.05);
+        font-size: 1.5rem;
+        font-weight: 700;
+        transform: rotate(-15deg);
+        -webkit-user-select: none;
+        user-select: none;
+        pointer-events: none;
+      }
+
+      .search-container {
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin: 0 auto 40px;
+        width: 100%;
+      }
+
+      .search-box {
+        display: flex;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 50px;
+        overflow: hidden;
+        height: 56px;
+      }
+
+      .search-box input {
+        flex-grow: 1;
+        border: none;
+        padding: 0 25px;
+        font-size: 1.1rem;
+        outline: none;
+        background: white;
+      }
+
+      .search-box button {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 0 30px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .search-box button:hover {
+        background: #2980b9;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>114514</h1>
-            <p class="subtitle">crystelf</p>
-        </header>
-        
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="债这里搜索页面">
-                <button><i class="fas fa-search"></i> 搜索</button>
-            </div>
+      <header>
+        <h1>114514</h1>
+        <p class="subtitle">y68</p>
+      </header>
+
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="债这里搜索页面" />
+          <button><i class="fas fa-search"></i> 搜索</button>
         </div>
-        
-        <div class="counter">
-            共 <span id="item-count">0</span> 个结果
-        </div>
-        
-        <div class="nav-container" id="nav-container">
-            <!-- 导航卡片将通过JavaScript动态生成 -->
-        </div>
+      </div>
+
+      <div class="counter">共 <span id="item-count">0</span> 个结果</div>
+
+      <div class="nav-container" id="nav-container">
+        <!-- 导航卡片将通过JavaScript动态生成 -->
+      </div>
     </div>
-    
+
     <footer>
-        <p>114514.crystelf.top y68 &copy; 2025 | 共 <span id="total-count">0</span> 个页面</p>
+      <p>
+        114514.crystelf.top y68 &copy; 2025 | 共
+        <span id="total-count">0</span> 个页面
+      </p>
     </footer>
-    
     <div class="watermark">114514</div>
-    
+
     <script>
-        // 导航数据（无分类）
-        const navData = [
-            /*{ name: "GitHub", url: "https://github.com" },
+      // 导航数据（无分类）
+      const navData = [
+        /*{ name: "GitHub", url: "https://github.com" },
             { name: "Stack Overflow", url: "https://stackoverflow.com" },
             { name: "MDN Web 文档", url: "https://developer.mozilla.org" },
             { name: "CodePen", url: "https://codepen.io" },
@@ -289,47 +298,55 @@
             { name: "TinyPNG", url: "https://tinypng.com" },
             { name: "Canva", url: "https://www.canva.com" },
             { name: "PDF 转换器", url: "https://smallpdf.com" }*/
-			{ name: '父母性别查询器', url: './Fumu'},
-			{ name: '小米跑解BL模拟游戏', url: './XiaomiBL'},
-			
-        ];
-        
-        // 渲染导航卡片
-        function renderNavCards() {
-            const container = document.getElementById('nav-container');
-            container.innerHTML = '';
-            
-            const searchTerm = document.getElementById('search-input').value.toLowerCase();
-            const filteredData = navData.filter(item => 
-                item.name.toLowerCase().includes(searchTerm)
-            );
-            
-            filteredData.forEach(item => {
-                const card = document.createElement('div');
-                card.className = "nav-card";
-                
-                // 使用模版字符串创建卡片内容
-                card.innerHTML = `
+        { name: "父母性别查询器", url: "./Fumu" },
+        { name: "小米跑解BL模拟游戏", url: "./XiaomiBL" },
+        { name: "放屁音乐", url: "https://fangpi.net/" },
+        { name: "y68的blog", url: "https://blog.sy68y.dpdns.org/" },
+        { name: "y68的普通☁️", url: "https://cloud.sy68y.dpdns.org/" },
+      ];
+
+      // 渲染导航卡片
+      function renderNavCards() {
+        const container = document.getElementById("nav-container");
+        container.innerHTML = "";
+
+        const searchTerm = document
+          .getElementById("search-input")
+          .value.toLowerCase();
+        const filteredData = navData.filter((item) =>
+          item.name.toLowerCase().includes(searchTerm)
+        );
+
+        filteredData.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "nav-card";
+
+          // 使用模版字符串创建卡片内容
+          card.innerHTML = `
                     <div class="nav-name">${item.name}</div>
                     <a href="${item.url}" target="_blank" class="nav-link"></a>
                 `;
-                
-                container.appendChild(card);
-            });
-            
-            // 更新计数器
-            document.getElementById('item-count').textContent = filteredData.length;
-            document.getElementById('total-count').textContent = navData.length;
-        }
-        
-        // 页面加载完成后执行
-        document.addEventListener('DOMContentLoaded', () => {
-            renderNavCards();
-            
-            // 添加搜索功能
-            document.getElementById('search-input').addEventListener('input', renderNavCards);
-            document.querySelector('.search-box button').addEventListener('click', renderNavCards);
+
+          container.appendChild(card);
         });
+
+        // 更新计数器
+        document.getElementById("item-count").textContent = filteredData.length;
+        document.getElementById("total-count").textContent = navData.length;
+      }
+
+      // 页面加载完成后执行
+      document.addEventListener("DOMContentLoaded", () => {
+        renderNavCards();
+
+        // 添加搜索功能
+        document
+          .getElementById("search-input")
+          .addEventListener("input", renderNavCards);
+        document
+          .querySelector(".search-box button")
+          .addEventListener("click", renderNavCards);
+      });
     </script>
-</body>
+  </body>
 </html>
