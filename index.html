@@ -248,6 +248,16 @@
       .search-box button:hover {
         background: #2980b9;
       }
+
+      /* 新增：手气不错按钮样式 */
+      .lucky-button {
+        background: #2ecc71 !important;
+        margin-left: 8px;
+      }
+
+      .lucky-button:hover {
+        background: #27ae60 !important;
+      }
     </style>
   </head>
   <body>
@@ -260,7 +270,9 @@
       <div class="search-container">
         <div class="search-box">
           <input type="text" id="search-input" placeholder="债这里搜索页面" />
-          <button><i class="fas fa-search"></i> 搜索</button>
+          <button id="search-button"><i class="fas fa-search"></i> 搜索</button>
+          <!-- 添加手气不错按钮 -->
+          <button id="lucky-button" class="lucky-button"><i class="fas fa-dice"></i> 手气不错</button>
         </div>
       </div>
 
@@ -282,27 +294,12 @@
     <script>
       // 导航数据（无分类）
       const navData = [
-        /*{ name: "GitHub", url: "https://github.com" },
-            { name: "Stack Overflow", url: "https://stackoverflow.com" },
-            { name: "MDN Web 文档", url: "https://developer.mozilla.org" },
-            { name: "CodePen", url: "https://codepen.io" },
-            { name: "Coursera", url: "https://www.coursera.org" },
-            { name: "LeetCode", url: "https://leetcode.com" },
-            { name: "Khan Academy", url: "https://www.khanacademy.org" },
-            { name: "Udemy", url: "https://www.udemy.com" },
-            { name: "知乎", url: "https://www.zhihu.com" },
-            { name: "掘金", url: "https://juejin.cn" },
-            { name: "V2EX", url: "https://www.v2ex.com" },
-            { name: "Reddit", url: "https://www.reddit.com" },
-            { name: "Google 翻译", url: "https://translate.google.com" },
-            { name: "TinyPNG", url: "https://tinypng.com" },
-            { name: "Canva", url: "https://www.canva.com" },
-            { name: "PDF 转换器", url: "https://smallpdf.com" }*/
         { name: "父母性别查询器", url: "./Fumu" },
         { name: "小米跑解BL模拟游戏", url: "./XiaomiBL" },
         { name: "放屁音乐", url: "https://fangpi.net/" },
         { name: "y68的blog", url: "https://blog.sy68y.dpdns.org/" },
         { name: "y68的普通☁️", url: "https://cloud.sy68y.dpdns.org/" },
+        { name: "音乐解锁", url: "https://musicc.sy68y.dpdns.org/" },
       ];
 
       // 渲染导航卡片
@@ -335,6 +332,30 @@
         document.getElementById("total-count").textContent = navData.length;
       }
 
+      // 手气不错功能
+      function goToRandomSite() {
+        const searchTerm = document
+          .getElementById("search-input")
+          .value.toLowerCase();
+        
+        // 根据搜索条件过滤
+        const filteredData = navData.filter((item) =>
+          item.name.toLowerCase().includes(searchTerm)
+        );
+        
+        if (filteredData.length === 0) {
+          alert("没有找到匹配的网站！");
+          return;
+        }
+        
+        // 随机选择一个网站
+        const randomIndex = Math.floor(Math.random() * filteredData.length);
+        const randomSite = filteredData[randomIndex];
+        
+        // 打开随机网站
+        window.open(randomSite.url, "_blank");
+      }
+
       // 页面加载完成后执行
       document.addEventListener("DOMContentLoaded", () => {
         renderNavCards();
@@ -344,8 +365,13 @@
           .getElementById("search-input")
           .addEventListener("input", renderNavCards);
         document
-          .querySelector(".search-box button")
+          .getElementById("search-button")
           .addEventListener("click", renderNavCards);
+        
+        // 添加手气不错功能
+        document
+          .getElementById("lucky-button")
+          .addEventListener("click", goToRandomSite);
       });
     </script>
   </body>
